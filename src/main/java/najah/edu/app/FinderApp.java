@@ -156,6 +156,7 @@ public class FinderApp {
 		
 	}
 
+	
 
 
 	public List<Home> byMaterial(String material) {
