@@ -1,0 +1,5 @@
+package najah.edu.app;
+
+public enum HomeAmenities {
+	AIRCONDITIONING, BALCONY, ELEVATOR,FIREPLACE,GARAGEPARKING,SWIMMINGPOOL
+}
