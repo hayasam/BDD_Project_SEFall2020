@@ -19,4 +19,5 @@ Given  these homes are contained in the system
   Scenario: Search about home with less than a specific price
     When I search about home with price less than 400
     Then A list of homes that matches the price specification should be returned and printed on the console
+    And email with the result should be send to user "hayasam@najah.edu"
    

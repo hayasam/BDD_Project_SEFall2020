@@ -1,16 +1,22 @@
 package najah.edu.acceptance_test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.BeforeClass;
+import org.mockito.Mockito;
+
+import static org.mockito.Mockito.*;
+
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import najah.edu.app.EmailService;
 import najah.edu.app.FinderApp;
 import najah.edu.app.Home;
 import najah.edu.app.HomeMaterial;
@@ -26,11 +32,11 @@ public class SearchHomeSteps {
 	private List<Home> byPriceList;
 	private String spec;
 	private int price;
-
+	private static EmailService emailservice;
 	public SearchHomeSteps(FinderApp finder) {
 		this.finder = finder;
 	}
-
+	
 	// Each scenario call this step---- we need to make some repositories static
 
 	@Given("these homes are contained in the system")
@@ -102,13 +108,17 @@ public class SearchHomeSteps {
 	@Then("A list of homes that matches the  material specification should be returned and printed on the console")
 	public void aListOfHomesThatMatchesTheMaterialSpecificationShouldBeReturnedAndPrintedOnTheConsole() {
 		System.out.println("\n\n"+byMaterialList);
-
+		emailservice=mock(EmailService.class);
+		
+		
+	   
 		Iterator<Home> it = byMaterialList.iterator();
 
 		if (spec.equals(HomeMaterial.WOOD.toString())) {
 			assertEquals("found 1 Wood homes", 1, byMaterialList.size());
 			while (it.hasNext()) {
 				assertTrue(it.next().getMaterial().WOOD.toString().equals(spec));
+				 //verify(emailservice,times(1)).sendEmail("hayasam@najah.edu", "anysubject");
 			}
 
 		}
@@ -119,6 +129,7 @@ public class SearchHomeSteps {
 			assertEquals("found 1 STONE homes", 1, byMaterialList.size());
 			while (it.hasNext()) {
 				assertTrue(it.next().getMaterial().STONE.toString().equals(spec));
+				// verify(emailservice,times(1)).sendEmail("hayasam@najah.edu", "anysubject");
 			}
 
 		} else if (spec.equals(HomeMaterial.BRICK.toString()))
@@ -127,6 +138,7 @@ public class SearchHomeSteps {
 			assertEquals("found 2 Brick homes", 2, byMaterialList.size());
 			while (it.hasNext()) {
 				assertTrue(it.next().getMaterial().BRICK.toString().equals(spec));
+				 verify(emailservice,times(1)).sendEmail("hayasam@najah.edu", "anysubject");
 			}
 
 		}
@@ -147,5 +159,16 @@ public class SearchHomeSteps {
 	public void aListOfHomesThatMatchesTheAreaSpecificationShouldBeReturnedAndPrintedOnTheConsole() {
 
 	}
+	
+	
+		@Then("email with the result should be send to user {string}")
+		public void emailWithTheResultShouldBeSendToUser(String email) {
+			//emailservice=mock(EmailService.class);
+		    //verify(emailservice,times(0)).sendEmail(email, "anysubject");
+		 
+		}
+
+
+
 
 }

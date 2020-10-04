@@ -167,6 +167,9 @@ public class FinderApp {
 			if (estate.getMaterial().toString().equals(material))
 				foundEstates.add(estate);
 		}
+		
+		EmailService emailservice=new EmailService();
+		emailservice.sendEmail("hayasam@najah.edu", "subject");
 		return foundEstates;
 		
 	}

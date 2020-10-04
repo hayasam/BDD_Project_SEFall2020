@@ -14,10 +14,11 @@ Feature: Search about suitable home
    
       
   @byMaterial
-  Scenario Outline: Search home by material
+  Scenario: Search home by material
     When I search about home by "BRICK"
     Then A list of homes that matches the  material specification should be returned and printed on the console
-    
+    And email with the result should be send to user "hayasam@najah.edu"
+   
  
     
      
@@ -25,15 +26,18 @@ Feature: Search about suitable home
   Scenario Outline: Search home by placement
     When I search about home by "CITY"
     Then A list of homes that matches the  placement specification should be returned and printed on the console
-     
+      And email with the result should be send to user "hayasam@najah.edu"
+   
 
   @byPrice
   Scenario: Search about home with less than a specific price
     When I search about home with price less than 250
     Then A list of homes that matches the price specification should be returned and printed on the console
-    
+     And email with the result should be send to user "hayasam@najah.edu"
+   
     @byArea
   Scenario: Search about home with less than a specific area
     When I search about home with area less than 180
     Then A list of homes that matches the area specification should be returned and printed on the console
-    
+     And email with the result should be send to user "hayasam@najah.edu"
+   
