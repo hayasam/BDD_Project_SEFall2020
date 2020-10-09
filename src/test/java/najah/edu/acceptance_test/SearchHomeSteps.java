@@ -15,12 +15,12 @@ import najah.edu.app.Home;
 import najah.edu.app.HomeMaterial;
 import najah.edu.app.HomePlacement;
 import najah.edu.app.HomeType;
-import najah.edu.app.MockEmailHolder;
+
 
 public class SearchHomeSteps {
 
 	private static FinderApp finder;
-	private MockEmailHolder mh;
+//	private MockEmailHolder mh;
 	private  List<Home> byMaterialList;
 	private static List<Home> byTypeList;
 	private List<Home> byPlacementList;
@@ -30,9 +30,9 @@ public class SearchHomeSteps {
 	
 
 	// dependency Injection
-	public SearchHomeSteps(FinderApp finder,MockEmailHolder meh) {
+	public SearchHomeSteps(FinderApp finder) {
 		this.finder = finder;
-		mh=meh;
+		//mh=meh;
 	}
 	
 	// Each scenario call this step---- we need to make some repositories static
