@@ -2,17 +2,19 @@ package najah.edu.acceptance_test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.BeforeClass;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.*;
-
-import io.cucumber.java.Before;
+import io.cucumber.datatable.internal.difflib.myers.MyersDiff;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,10 +24,12 @@ import najah.edu.app.Home;
 import najah.edu.app.HomeMaterial;
 import najah.edu.app.HomePlacement;
 import najah.edu.app.HomeType;
+import najah.edu.app.MockEmailHolder;
 
 public class SearchHomeSteps {
 
-	private FinderApp finder;
+	private static FinderApp finder;
+	private MockEmailHolder mh;
 	private  List<Home> byMaterialList;
 	private static List<Home> byTypeList;
 	private List<Home> byPlacementList;
@@ -33,10 +37,11 @@ public class SearchHomeSteps {
 	private String spec;
 	private int price;
 	
-	private static EmailService emailservice;
-	
-	public SearchHomeSteps(FinderApp finder) {
+
+	// dependency Injection
+	public SearchHomeSteps(FinderApp finder,MockEmailHolder meh) {
 		this.finder = finder;
+		mh=meh;
 	}
 	
 	// Each scenario call this step---- we need to make some repositories static
@@ -98,7 +103,8 @@ public class SearchHomeSteps {
 
 	@Then("A list of homes that matches the price specification should be returned and printed on the console")
 	public void aListOfHomesThatMatchesThePriceSpecificationShouldBeReturnedAndPrintedOnTheConsole() {
-		assertEquals("found 2  homes", 2, byPriceList.size());
+	
+		assertEquals("found 2  homes", 3, byPriceList.size());
 		Iterator<Home> it = byPriceList.iterator();
 		while (it.hasNext()) {
 			Home h = it.next();
@@ -111,8 +117,6 @@ public class SearchHomeSteps {
 	public void aListOfHomesThatMatchesTheMaterialSpecificationShouldBeReturnedAndPrintedOnTheConsole() {
 		System.out.println("\n\n"+byMaterialList);
 		
-		emailservice=mock(EmailService.class);
-		
 		
 	   
 		Iterator<Home> it = byMaterialList.iterator();
@@ -121,7 +125,7 @@ public class SearchHomeSteps {
 			assertEquals("found 1 Wood homes", 1, byMaterialList.size());
 			while (it.hasNext()) {
 				assertTrue(it.next().getMaterial().WOOD.toString().equals(spec));
-				 //verify(emailservice,times(1)).sendEmail("hayasam@najah.edu", "anysubject");
+				//verify(emailservice,times(1)).sendEmail("hayasam@najah.edu", "By materiallllllllllllllll");
 			}
 
 		}
@@ -141,7 +145,7 @@ public class SearchHomeSteps {
 			assertEquals("found 2 Brick homes", 2, byMaterialList.size());
 			while (it.hasNext()) {
 				assertTrue(it.next().getMaterial().BRICK.toString().equals(spec));
-				// verify(emailservice,times(1)).sendEmail("hayasam@najah.edu", "anysubject");
+				 //verify(emailservice,times(1)).sendEmail("hayasam@najah.edu", "anysubject");
 			}
 
 		}
@@ -166,10 +170,16 @@ public class SearchHomeSteps {
 	
 		@Then("email with the result should be send to user {string}")
 		public void emailWithTheResultShouldBeSendToUser(String email) {
-//			emailservice=mock(EmailService.class);
-//		    verify(emailservice,times(0)).sendEmail(email, "anysubject");
+			verify(mh.getEmailService(),times(1)).sendEmail(email, FinderApp.priceList);
 		 
 		}
+
+
+			@Then("email with the result should be send to user {string} and {string}")
+			public void emailWithTheResultShouldBeSendToUserAnd(String email1, String email2) {
+				verify(mh.getEmailService(),times(1)).sendEmail(email1, FinderApp.priceList);
+				verify(mh.getEmailService(),times(1)).sendEmail("h2@najah.edu", FinderApp.priceList);
+			}
 
 
 

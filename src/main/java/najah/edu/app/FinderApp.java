@@ -11,6 +11,15 @@ public class FinderApp {
 
 	private static List<Home> repository;
 	private static Map<String, String> feature_repository = new HashMap<String, String>();
+	private static EmailService emailservice;
+	public static List<Home> priceList;
+	private EmailService actualEmailService;
+	
+	public void setEmailservice(EmailService emailservice) {
+		this.emailservice = emailservice;
+	}
+
+
 
 	public Map<String, String> getProp_repository() {
 		return feature_repository;
@@ -33,6 +42,7 @@ public class FinderApp {
 
 	public FinderApp() {
 		repository = new ArrayList<Home>();
+		actualEmailService=new EmailService();
 
 	}
 
@@ -168,8 +178,7 @@ public class FinderApp {
 				foundEstates.add(estate);
 		}
 		
-		EmailService emailservice=new EmailService();
-		emailservice.sendEmail("hayasam@najah.edu", "subject");
+		
 		return foundEstates;
 		
 	}
@@ -190,8 +199,18 @@ public class FinderApp {
 		while (it.hasNext()) {
 			Home estate = it.next();
 			if (estate.getPrice()<price)
+				
 				foundEstates.add(estate);
 		}
+		
+		// send actual email
+		actualEmailService.sendEmail("haya.sammaneh@gmail.com", foundEstates);
+		//==============================
+		// just to make it public to test class
+		priceList=foundEstates;
+		// using mock object
+	    emailservice.sendEmail("haya.sammaneh@gmail.com", foundEstates);
+	    emailservice.sendEmail("h2@najah.edu", foundEstates);
 		return foundEstates;
 	}
 

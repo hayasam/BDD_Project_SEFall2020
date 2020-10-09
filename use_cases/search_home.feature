@@ -33,7 +33,7 @@ Feature: Search about suitable home
   Scenario: Search about home with less than a specific price
     When I search about home with price less than 250
     Then A list of homes that matches the price specification should be returned and printed on the console
-     And email with the result should be send to user "hayasam@najah.edu"
+     And email with the result should be send to user "haya.sammaneh@gmail.com" and "h2@najah.edu"
    
     @byArea
   Scenario: Search about home with less than a specific area

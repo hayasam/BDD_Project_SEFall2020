@@ -13,7 +13,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 	monochrome=true, 
 	snippets = SnippetType.CAMELCASE, 
 	glue = { "najah.edu.acceptance_test"},
-	strict=true, tags= " @byMaterial"
+	strict=true, tags= " @byPrice"
 	)
 
 

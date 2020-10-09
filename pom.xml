@@ -1,41 +1,41 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>ApartmentSearchEngine</groupId>
-  <artifactId>Search</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
- <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ApartmentSearchEngine</groupId>
+	<artifactId>Search</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<testSourceDirectory>src/test/java</testSourceDirectory>
-		
-<!-- 		<plugins> -->
-		
-<!-- 			<plugin> -->
-<!-- 				<artifactId>maven-compiler-plugin</artifactId> -->
-<!-- 				<version>3.8.0</version> -->
-<!-- 				<configuration> -->
-<!-- 					<source>1.8</source> -->
-<!-- 					<target>1.8</target> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
-			
-<!-- 		</plugins> -->
+		<pluginManagement>
+	        <plugins>
+	            <plugin>
+	                <groupId>org.sonarsource.scanner.maven</groupId>
+	                <artifactId>sonar-maven-plugin</artifactId>
+	                <version>3.7.0.1746</version>
+	            </plugin>
+	        </plugins>
+	    </pluginManagement>
 	</build>
+	
+	<!-- mvn sonar:sonar -Dsonar.host.url=http://localhost:9000  -Dsonar.login=the-generated-token -->
 
 	<!-- Add Any needed Dependency / Library -->
 	<dependencies>
-<dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.3.3</version>
-            <scope>test</scope>
-        </dependency>
-       
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.3.3</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
@@ -48,12 +48,26 @@
 			<version>6.6.0</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- for dependency injection -->
+		<!-- Cucumber uses a dependency injection framework to create a single 
+			instance of a class and share that instance between all the step definition 
+			classes that need to use it. -->
 		<dependency>
+
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-picocontainer</artifactId>
 			<version>6.6.0</version>
 			<scope>test</scope>
 		</dependency>
-		
+		<!-- send email -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.5.0-b01</version>
+		</dependency>
+
+
+	
+
 	</dependencies>
 </project>

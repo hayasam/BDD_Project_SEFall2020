@@ -34,5 +34,17 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/najah/.m2/repository/org/mockito/mockito-core/3.3.3/mockito-core-3.3.3.jar" sourcepath="C:/Users/najah/.m2/repository/org/mockito/mockito-core/3.3.3/mockito-core-3.3.3-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/najah/.m2/repository/org/mockito/mockito-core/3.3.3/mockito-core-3.3.3-javadoc.jar!/"/>
+			<attribute name="maven.groupId" value="org.mockito"/>
+			<attribute name="maven.artifactId" value="mockito-core"/>
+			<attribute name="maven.version" value="3.3.3"/>
+			<attribute name="maven.scope" value="test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/library_full_solution/lib/mockito-core-3.2.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
