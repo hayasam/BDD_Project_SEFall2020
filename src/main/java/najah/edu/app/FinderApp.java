@@ -204,7 +204,7 @@ public class FinderApp {
 		}
 		
 		// send actual email
-		actualEmailService.sendEmail("haya.sammaneh@gmail.com", foundEstates);
+		//actualEmailService.sendEmail("haya.sammaneh@gmail.com", foundEstates);
 		//==============================
 		// just to make it public to test class
 		priceList=foundEstates;
