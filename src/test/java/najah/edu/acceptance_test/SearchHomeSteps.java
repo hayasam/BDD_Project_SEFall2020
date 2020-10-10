@@ -15,12 +15,16 @@ import najah.edu.app.Home;
 import najah.edu.app.HomeMaterial;
 import najah.edu.app.HomePlacement;
 import najah.edu.app.HomeType;
+import najah.edu.app.MockEmailHolder;
+import najah.edu.app.WebEmailService;
 
+
+import static org.mockito.Mockito.*;
 
 public class SearchHomeSteps {
 
 	private static FinderApp finder;
-//	private MockEmailHolder mh;
+	private MockEmailHolder mockWebholder;
 	private  List<Home> byMaterialList;
 	private static List<Home> byTypeList;
 	private List<Home> byPlacementList;
@@ -30,9 +34,10 @@ public class SearchHomeSteps {
 	
 
 	// dependency Injection
-	public SearchHomeSteps(FinderApp finder) {
+	public SearchHomeSteps(FinderApp finder,MockEmailHolder mockWebholderIn) {
 		this.finder = finder;
-		//mh=meh;
+		mockWebholder=mockWebholderIn;
+	
 	}
 	
 	// Each scenario call this step---- we need to make some repositories static
@@ -168,8 +173,10 @@ public class SearchHomeSteps {
 
 			@Then("email with the result should be send to user {string} and {string}")
 			public void emailWithTheResultShouldBeSendToUserAnd(String email1, String email2) {
-				//verify(mh.getEmailService(),times(1)).sendEmail(email1, FinderApp.priceList);
-				//verify(mh.getEmailService(),times(1)).sendEmail("h2@najah.edu", FinderApp.priceList);
+			
+				
+				verify(mockWebholder.getEmailService(),times(1)).sendEmail(email1, FinderApp.priceList);
+				verify(mockWebholder.getEmailService(),times(1)).sendEmail(email2, FinderApp.priceList);
 			}
 
 

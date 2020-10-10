@@ -11,14 +11,15 @@ public class FinderApp {
 
 	private static List<Home> repository;
 	private static Map<String, String> feature_repository = new HashMap<String, String>();
-	//private static EmailService emailservice;
+	private static WebEmailService emailservice;
 	public static List<Home> priceList;
 //	private EmailService actualEmailService;
-//	
-//	public void setEmailservice(EmailService emailservice) {
-//		this.emailservice = emailservice;
-//	}
-//
+	
+	
+	public void setEmailservice(WebEmailService emailservice) {
+		this.emailservice = emailservice;
+	}
+
 
 
 	public Map<String, String> getProp_repository() {
@@ -42,8 +43,7 @@ public class FinderApp {
 
 	public FinderApp() {
 		repository = new ArrayList<Home>();
-		//actualEmailService=new EmailService();
-
+	
 	}
 
 	public void createRepositoryFromFeatureRepository() {
@@ -209,8 +209,8 @@ public class FinderApp {
 		// just to make it public to test class
 		priceList=foundEstates;
 		// using mock object
-	   // emailservice.sendEmail("haya.sammaneh@gmail.com", foundEstates);
-	  //  emailservice.sendEmail("h2@najah.edu", foundEstates);
+	   emailservice.sendEmail("haya.sammaneh@gmail.com", foundEstates);
+	  emailservice.sendEmail("h2@najah.edu", foundEstates);
 		return foundEstates;
 	}
 
