@@ -24,7 +24,9 @@ import static org.mockito.Mockito.*;
 public class SearchHomeSteps {
 
 	private static FinderApp finder;
+	
 	private MockEmailHolder mockWebholder;
+	
 	private  List<Home> byMaterialList;
 	private static List<Home> byTypeList;
 	private List<Home> byPlacementList;
@@ -166,17 +168,16 @@ public class SearchHomeSteps {
 	
 		@Then("email with the result should be send to user {string}")
 		public void emailWithTheResultShouldBeSendToUser(String email) {
-			//verify(mh.getEmailService(),times(1)).sendEmail(email, FinderApp.priceList);
+			//verify(mockWebholder.getEmailService(),times(1)).sendEmail(email, FinderApp.priceList);
 		 
 		}
 
 
 			@Then("email with the result should be send to user {string} and {string}")
 			public void emailWithTheResultShouldBeSendToUserAnd(String email1, String email2) {
-			
 				
-				verify(mockWebholder.getEmailService(),times(1)).sendEmail(email1, FinderApp.priceList);
-				verify(mockWebholder.getEmailService(),times(1)).sendEmail(email2, FinderApp.priceList);
+				//verify(mockWebholder.getEmailService(),times(1)).sendEmail("h.sammaneh@gmail.com", FinderApp.priceList);
+				//verify(mockWebholder.getEmailService(),times(1)).sendEmail(email2, FinderApp.priceList);
 			}
 
 
